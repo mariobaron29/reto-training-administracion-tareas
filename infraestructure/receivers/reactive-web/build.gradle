@@ -1,0 +1,7 @@
+dependencies {
+    compile project(':domain-controller')
+    compile('org.springframework.boot:spring-boot-starter-webflux')
+
+    compile 'org.reactivecommons.utils:object-mapper:0.1.0'
+
+}
