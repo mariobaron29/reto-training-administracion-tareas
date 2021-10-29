@@ -9,14 +9,7 @@ subprojects {
         mavenCentral()
         maven { url "https://repo.spring.io/snapshot" }
         maven { url "https://repo.spring.io/milestone" }
-        /*maven {
-            url 'https://grupo-exito.pkgs.visualstudio.com/GCIT/_packaging/sofka-libraries/maven/v1'
-            name 'sofka-libraries'
-            credentials{
-                username artifactUsername
-                password artifactPassword
-            }
-        }*/
+
     }
 
     dependencies {
@@ -31,6 +24,9 @@ subprojects {
         testAnnotationProcessor 'org.projectlombok:lombok'
         testCompileOnly 'org.projectlombok:lombok'
         testCompile 'org.assertj:assertj-core:2.9.1'
+
+        //Heroku dependency
+        compile 'com.github.jsimone:webapp-runner:8.5.11.3'
     }
 
 
@@ -44,4 +40,19 @@ subprojects {
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
         }
     }
+
+    // Heroku configs for webapp runner
+    task stage() {
+        dependsOn clean, war
+    }
+    war.mustRunAfter clean
+
+    task copyToLib(type: Copy) {
+        into "$buildDir/server"
+        from(configurations.compile) {
+            include "webapp-runner*"
+        }
+    }
+
+    stage.dependsOn(copyToLib)
 }
