@@ -1,1 +1,1 @@
-web: java -cp target/classes:target/dependency/* MainApplication -DPORT=$PORT
+web: java -DPORT=$PORT
