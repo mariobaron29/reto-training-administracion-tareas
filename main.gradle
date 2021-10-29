@@ -2,7 +2,7 @@ subprojects {
     apply plugin: "java"
     apply plugin: "jacoco"
     apply plugin: 'io.spring.dependency-management'
-    //apply plugin: 'war'
+    
     apply plugin: 'ear'
 
     evaluationDependsOn(':adapters-async-event-bus')
@@ -29,11 +29,6 @@ subprojects {
         testCompileOnly 'org.projectlombok:lombok'
         testCompile 'org.assertj:assertj-core:2.9.1'
 
-        //Heroku dependency
-        //compile 'com.github.jsimone:webapp-runner:8.5.11.3'
-
-        // Tomcat dependency
-       // providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     }
 
 
@@ -48,28 +43,4 @@ subprojects {
         }
     }
 
-    // Heroku configs for webapp runner
-    /*task stage() {
-        dependsOn clean, war
-    }
-    war.mustRunAfter clean
-
-    task copyToLib(type: Copy) {
-        into "$buildDir/server"
-        from(configurations.compile) {
-            include "webapp-runner*"
-        }
-    }
-
-    stage.dependsOn(copyToLib)*/
-
-    // War plugin config
-    /*war {
-        baseName = 'reto-training-administracion-tareas'
-        version =  '0.1.0'
-    }
-
-    configurations {
-        providedRuntime
-    }*/
 }
