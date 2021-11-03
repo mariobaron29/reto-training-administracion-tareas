@@ -2,9 +2,6 @@ package com.sofka.tareas.domain.entity.event;
 
 import com.sofka.tareas.common.event.JobCreatedEvent;
 import com.sofka.tareas.domain.canonical.event.JobEventCanonical;
-import com.sofka.tareas.domain.canonical.job.JobCanonical;
-
-import java.util.UUID;
 
 public interface JobEventFactory {
 

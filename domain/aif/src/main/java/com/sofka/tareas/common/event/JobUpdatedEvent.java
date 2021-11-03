@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @Builder(toBuilder = true)
 public class JobUpdatedEvent implements Event {
 
-    public static final String EVENT_NAME = "JOB_UPDATED";
+    public static final String EVENT_NAME = "tareas.job.updated";
     private final CanonicalNotification canonical;
 
     @Override
