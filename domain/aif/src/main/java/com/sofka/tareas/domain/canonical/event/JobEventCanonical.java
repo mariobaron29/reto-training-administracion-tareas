@@ -1,4 +1,4 @@
-package com.sofka.tareas.domain.canonical;
+package com.sofka.tareas.domain.canonical.event;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -11,9 +11,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class JobCanonical {
+public class JobEventCanonical {
 
-    private String id;
+    private String eventId;
+    private String eventName;
+
+    private String jobId;
     private String url;
     private String timeZone;
     private String email;

@@ -1,9 +1,12 @@
 package com.sofka.tareas;
 
+import com.sofka.tareas.command.JobController;
 import com.sofka.tareas.common.event.EventsGateway;
 import com.sofka.tareas.configbuilder.ConfigBuilder;
 import com.sofka.tareas.configbuilder.ConfigParameters;
-import com.sofka.tareas.domain.canonical.JobCanonicalRepository;
+import com.sofka.tareas.domain.canonical.event.EventCanonicalRepository;
+import com.sofka.tareas.domain.canonical.job.JobCanonicalRepository;
+import com.sofka.tareas.query.JobQueryController;
 import lombok.extern.java.Log;
 import org.reactivecommons.async.impl.config.RabbitMqConfig;
 import org.reactivecommons.utils.ObjectMapper;
@@ -40,12 +43,34 @@ public class ControllerConfig {
     @Bean
     public JobController jobController(
             EventsGateway eventsGateway,
-            JobCanonicalRepository jobRepository
+            JobCanonicalRepository jobRepository,
+            EventCanonicalRepository eventRepository
     ) {
         return new JobController(
                 ConfigBuilder.builder()
                         .eventsGateway(eventsGateway)
                         .jobRepository(jobRepository)
+                        .eventRepository(eventRepository)
+                        .configParameters(ConfigParameters.builder()
+                                .componentName(componentName)
+                                .serviceName(serviceName)
+                                .operation(operation)
+                                .build())
+                        .build()
+        );
+    }
+
+    @Bean
+    public JobQueryController jobQueryController(
+            EventsGateway eventsGateway,
+            JobCanonicalRepository jobRepository,
+            EventCanonicalRepository eventRepository
+    ) {
+        return new JobQueryController(
+                ConfigBuilder.builder()
+                        .eventsGateway(eventsGateway)
+                        .jobRepository(jobRepository)
+                        .eventRepository(eventRepository)
                         .configParameters(ConfigParameters.builder()
                                 .componentName(componentName)
                                 .serviceName(serviceName)

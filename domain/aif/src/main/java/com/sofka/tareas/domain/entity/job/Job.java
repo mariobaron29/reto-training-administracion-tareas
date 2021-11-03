@@ -1,4 +1,4 @@
-package com.sofka.tareas.domain;
+package com.sofka.tareas.domain.entity.job;
 
 import lombok.Builder;
 import lombok.Data;

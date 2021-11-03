@@ -1,4 +1,4 @@
-package com.sofka.tareas;
+package com.sofka.tareas.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,9 +12,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class JobData {
+public class JobEventData {
     @Id
-    private String id;
+    private String eventId;
+    private String eventName;
+
+    private String jobId;
     private String url;
     private String timeZone;
     private String email;

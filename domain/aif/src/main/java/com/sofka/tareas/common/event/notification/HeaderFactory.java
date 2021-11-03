@@ -7,8 +7,8 @@ public interface HeaderFactory {
         return Header.builder()
                 .applicationId(serviceName)
                 .transactionId(uuid)
-                .hostname("vtex-canonico-producto-rabbitmq-mongodb")
-                .user("vtex-canonico-producto-rabbitmq-mongodb")
+                .hostname("reto-training-administracion-tareas")
+                .user("reto")
                 .transactionDate(new Date())
                 .build();
     }

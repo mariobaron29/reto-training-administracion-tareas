@@ -1,8 +1,8 @@
-package com.sofka.tareas.mapper;
+package com.sofka.tareas.command.mapper;
 
-import com.sofka.tareas.domain.canonical.JobCanonical;
-import com.sofka.tareas.dto.JobCanonicalDto;
-import com.sofka.tareas.dto.RequestJobDto;
+import com.sofka.tareas.domain.canonical.job.JobCanonical;
+import com.sofka.tareas.command.dto.JobCanonicalDto;
+import com.sofka.tareas.command.dto.RequestJobDto;
 import com.sofka.tareas.common.ObjectMapperDomain;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +27,7 @@ public class ParserDataToEntity implements ObjectMapperDomain {
                     .status(jobCanonicalDto.getStatus())
                     .timeZone(jobCanonicalDto.getTimeZone())
                     .url(jobCanonicalDto.getUrl())
+                    .status(jobCanonicalDto.getStatus())
                 .build();
     }
 }

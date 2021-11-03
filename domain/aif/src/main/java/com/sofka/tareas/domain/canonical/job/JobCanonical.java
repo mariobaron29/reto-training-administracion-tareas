@@ -1,20 +1,17 @@
-package com.sofka.tareas.dto;
+package com.sofka.tareas.domain.canonical.job;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class JobCanonicalDto {
+public class JobCanonical {
 
     private String id;
     private String url;

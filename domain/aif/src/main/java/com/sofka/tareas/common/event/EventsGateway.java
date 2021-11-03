@@ -1,6 +1,5 @@
 package com.sofka.tareas.common.event;
 
-import com.sofka.tareas.common.event.Event;
 import reactor.core.publisher.Mono;
 
 /**

@@ -1,11 +1,10 @@
 package com.sofka.tareas.command;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sofka.tareas.dto.RequestJobDto;
-import com.sofka.tareas.dto.ResponseJobDto;
-import com.sofka.tareas.JobController;
-import com.sofka.tareas.domain.response.JobResponse;
-import com.sofka.tareas.mapper.ParserDataToEntity;
+import com.sofka.tareas.domain.response.JobEventResponse;
+import com.sofka.tareas.command.dto.RequestJobDto;
+import com.sofka.tareas.command.dto.ResponseJobDto;
+import com.sofka.tareas.command.mapper.ParserDataToEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,7 +15,7 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequiredArgsConstructor
 @SuppressWarnings("unchecked")
-public class JobService {
+public class JobCommandService {
 
     private final JobController controller;
 
@@ -25,10 +24,10 @@ public class JobService {
     final ObjectMapper mapper = new ObjectMapper();
 
         @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path ="/api/v1/tareas/crear-tarea")
-    public ResponseEntity<Mono<ResponseJobDto>> createJobQuery(@RequestBody String tarea){
+    public ResponseEntity<Mono<ResponseJobDto>> createJobQuery(@RequestBody String job){
 
             try{
-                inscriptionDto = mapper.readValue(tarea, RequestJobDto.class);
+                inscriptionDto = mapper.readValue(job, RequestJobDto.class);
             return ResponseEntity.ok()
                     .body(controller.processCreateJob(toEntity.buildJob(inscriptionDto))
                         .flatMap(substituteResponse -> buildDto(substituteResponse))
@@ -39,10 +38,10 @@ public class JobService {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, path ="/api/v1/tareas/actualizar-tarea")
-    public ResponseEntity<Mono<ResponseJobDto>> updateJobQuery(@RequestParam String dto){
+    public ResponseEntity<Mono<ResponseJobDto>> updateJobQuery(@RequestBody String job){
 
         try{
-            inscriptionDto = mapper.readValue(dto, RequestJobDto.class);
+            inscriptionDto = mapper.readValue(job, RequestJobDto.class);
             return ResponseEntity.ok()
                     .body(controller.processUpdateJob(toEntity.buildJob(inscriptionDto))
                             .flatMap(substituteResponse -> buildDto(substituteResponse))
@@ -57,9 +56,9 @@ public class JobService {
         return Mono.just("OK");
     }
 
-    private Mono<ResponseJobDto> buildDto(JobResponse response) {
+    private Mono<ResponseJobDto> buildDto(JobEventResponse response) {
         return Mono.just(ResponseJobDto.builder()
-                        .jobCanonical(response.getJobCanonical())
+                        .jobEventCanonical(response.getJobEventCanonical())
                 .build());
     }
 

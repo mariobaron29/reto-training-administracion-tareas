@@ -1,4 +1,4 @@
-package com.sofka.tareas;
+package com.sofka.tareas.data;
 
 import org.springframework.data.repository.query.ReactiveQueryByExampleExecutor;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
