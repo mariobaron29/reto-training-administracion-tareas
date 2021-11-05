@@ -12,10 +12,7 @@ import lombok.extern.java.Log;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Log
@@ -53,15 +50,6 @@ public class JobQueryController implements JobFactory, HeaderFactory, JobEventFa
 
     private Flux<Job> findAllJobs() {
         return configBuilder.getJobRepository().findAllJobs();
-       /* List<JobCanonical> jobs = new ArrayList<>();
-       configBuilder.getJobRepository().findAllJobs()
-                .map(jobs1 -> jobs1.stream().map(job -> buildJobCanonical(job))
-                        .map(jobCanonical -> jobs.add(jobCanonical)))
-               .then();
-
-        return Mono.just(JobResponse.builder()
-                        .jobCanonical(jobs)
-                        .build());*/
-    }
+     }
 
 }
