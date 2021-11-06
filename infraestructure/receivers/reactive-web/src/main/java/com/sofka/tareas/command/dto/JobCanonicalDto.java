@@ -18,6 +18,6 @@ public class JobCanonicalDto {
     private String timeZone;
     private String email;
     private String cronRegExp;
-    private String status;
+    private Boolean status;
 
 }

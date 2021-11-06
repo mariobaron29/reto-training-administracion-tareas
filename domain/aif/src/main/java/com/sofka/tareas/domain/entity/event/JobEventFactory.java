@@ -29,7 +29,7 @@ public interface JobEventFactory {
                     .status(canonical.getStatus())
                     .timeZone(canonical.getTimeZone())
                     .url(canonical.getUrl())
-                    .status(JobCreatedEvent.EVENT_NAME)
+                    .status(true)
                 .build();
     }
 

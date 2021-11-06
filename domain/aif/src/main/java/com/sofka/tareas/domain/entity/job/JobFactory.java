@@ -1,7 +1,5 @@
 package com.sofka.tareas.domain.entity.job;
 
-import com.sofka.tareas.common.event.JobCreatedEvent;
-import com.sofka.tareas.common.event.JobUpdatedEvent;
 import com.sofka.tareas.domain.canonical.job.JobCanonical;
 
 import java.util.UUID;
@@ -16,7 +14,6 @@ public interface JobFactory {
                     .status(canonical.getStatus())
                     .timeZone(canonical.getTimeZone())
                     .url(canonical.getUrl())
-                    .status(canonical.getStatus())
                 .build();
     }
 
@@ -28,7 +25,6 @@ public interface JobFactory {
                     .status(job.getStatus())
                     .timeZone(job.getTimeZone())
                     .url(job.getUrl())
-                    .status(job.getStatus())
                 .build();
     }
 
@@ -40,7 +36,7 @@ public interface JobFactory {
                     .status(canonical.getStatus())
                     .timeZone(canonical.getTimeZone())
                     .url(canonical.getUrl())
-                    .status(JobCreatedEvent.EVENT_NAME)
+                    .status(true)
                 .build();
     }
 
@@ -52,7 +48,6 @@ public interface JobFactory {
                     .status(canonical.getStatus())
                     .timeZone(canonical.getTimeZone())
                     .url(canonical.getUrl())
-                    .status(JobUpdatedEvent.EVENT_NAME)
                 .build();
     }
 }
