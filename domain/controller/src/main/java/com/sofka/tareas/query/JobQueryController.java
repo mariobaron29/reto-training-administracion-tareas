@@ -2,17 +2,13 @@ package com.sofka.tareas.query;
 
 import com.sofka.tareas.common.event.notification.HeaderFactory;
 import com.sofka.tareas.configbuilder.ConfigBuilder;
-import com.sofka.tareas.domain.canonical.job.JobCanonical;
 import com.sofka.tareas.domain.entity.event.JobEventFactory;
 import com.sofka.tareas.domain.entity.job.Job;
 import com.sofka.tareas.domain.entity.job.JobFactory;
-import com.sofka.tareas.domain.response.JobResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.Arrays;
 
 
 @Log
@@ -21,7 +17,7 @@ public class JobQueryController implements JobFactory, HeaderFactory, JobEventFa
 
     private final ConfigBuilder configBuilder;
 
-    public Mono<JobResponse> processFindJobById(String id) {
+    public Mono<Job> processFindJobById(String id) {
 
         return findJobById(id);
 
@@ -33,19 +29,9 @@ public class JobQueryController implements JobFactory, HeaderFactory, JobEventFa
 
     }
 
-    private Mono<JobResponse> findJobById(String id) {
+    private Mono<Job> findJobById(String id) {
         return configBuilder.getJobRepository()
-                        .findById(id)
-                .flatMap(job -> Mono.just(JobResponse.builder()
-                        .jobCanonical(Arrays.asList(JobCanonical.builder()
-                                .id(job.getId())
-                                .url(job.getUrl())
-                                .cronRegExp(job.getCronRegExp())
-                                .email(job.getEmail())
-                                .timeZone(job.getTimeZone())
-                                .status(job.getStatus())
-                                .build()))
-                        .build()));
+                        .findById(id);
     }
 
     private Flux<Job> findAllJobs() {

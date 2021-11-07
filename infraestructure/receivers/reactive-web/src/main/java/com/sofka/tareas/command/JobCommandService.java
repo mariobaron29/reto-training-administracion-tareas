@@ -1,10 +1,10 @@
 package com.sofka.tareas.command;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sofka.tareas.domain.response.JobEventResponse;
 import com.sofka.tareas.command.dto.RequestJobDto;
 import com.sofka.tareas.command.dto.ResponseJobDto;
 import com.sofka.tareas.command.mapper.ParserDataToEntity;
+import com.sofka.tareas.domain.canonical.event.JobEventCanonical;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,7 +14,6 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequiredArgsConstructor
-@SuppressWarnings("unchecked")
 public class JobCommandService {
 
     private final JobController controller;
@@ -30,7 +29,7 @@ public class JobCommandService {
                 inscriptionDto = mapper.readValue(job, RequestJobDto.class);
             return ResponseEntity.ok()
                     .body(controller.processCreateJob(toEntity.buildJob(inscriptionDto))
-                        .flatMap(substituteResponse -> buildDto(substituteResponse))
+                        .flatMap(this::buildDto)
                         );
             }catch(Exception exc){
                 return handleErrors(exc);
@@ -44,7 +43,7 @@ public class JobCommandService {
             inscriptionDto = mapper.readValue(job, RequestJobDto.class);
             return ResponseEntity.ok()
                     .body(controller.processUpdateJob(toEntity.buildJob(inscriptionDto))
-                            .flatMap(substituteResponse -> buildDto(substituteResponse))
+                            .flatMap(this::buildDto)
                     );
         }catch(Exception exc){
             return handleErrors(exc);
@@ -56,9 +55,9 @@ public class JobCommandService {
         return Mono.just("OK");
     }
 
-    private Mono<ResponseJobDto> buildDto(JobEventResponse response) {
+    private Mono<ResponseJobDto> buildDto(JobEventCanonical canonical) {
         return Mono.just(ResponseJobDto.builder()
-                        .jobEventCanonical(response.getJobEventCanonical())
+                        .jobEventCanonical(canonical)
                 .build());
     }
 

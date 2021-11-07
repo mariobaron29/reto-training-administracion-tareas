@@ -1,6 +1,6 @@
 package com.sofka.tareas.query;
 
-import com.sofka.tareas.domain.response.JobResponse;
+import com.sofka.tareas.domain.entity.job.Job;
 import com.sofka.tareas.query.dto.ResponseJobQueryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -43,9 +43,9 @@ public class JobQueryService {
         return Mono.just("OK");
     }
 
-    private Mono<ResponseJobQueryDto> buildDto(JobResponse response) {
+    private Mono<ResponseJobQueryDto> buildDto(Job job) {
         return Mono.just(ResponseJobQueryDto.builder()
-                        .jobCanonical(response.getJobCanonical())
+                        .jobResult(job)
                 .build());
     }
 
