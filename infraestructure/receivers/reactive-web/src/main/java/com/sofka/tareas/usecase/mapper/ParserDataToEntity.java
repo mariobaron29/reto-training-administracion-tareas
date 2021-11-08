@@ -1,8 +1,8 @@
-package com.sofka.tareas.command.mapper;
+package com.sofka.tareas.usecase.mapper;
 
 import com.sofka.tareas.domain.canonical.job.JobCanonical;
-import com.sofka.tareas.command.dto.JobCanonicalDto;
-import com.sofka.tareas.command.dto.RequestJobDto;
+import com.sofka.tareas.usecase.dto.JobCanonicalDto;
+import com.sofka.tareas.usecase.dto.RequestJobDto;
 import com.sofka.tareas.common.ObjectMapperDomain;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

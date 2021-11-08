@@ -1,6 +1,5 @@
 package com.sofka.tareas.query;
 
-import com.sofka.tareas.common.event.notification.HeaderFactory;
 import com.sofka.tareas.configbuilder.ConfigBuilder;
 import com.sofka.tareas.domain.entity.event.JobEventFactory;
 import com.sofka.tareas.domain.entity.job.Job;

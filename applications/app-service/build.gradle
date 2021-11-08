@@ -3,6 +3,7 @@ apply plugin: 'org.springframework.boot'
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter'
     compile project(":domain-controller")
+    compile project(":domain-use-case")
 
     compile project(":adapters-async-event-bus")
     compile project(":adapters-mongodb-repository")

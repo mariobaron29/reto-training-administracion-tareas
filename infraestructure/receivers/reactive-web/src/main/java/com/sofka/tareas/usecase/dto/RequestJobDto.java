@@ -1,23 +1,21 @@
-package com.sofka.tareas.command.dto;
+package com.sofka.tareas.usecase.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class JobCanonicalDto {
+public class RequestJobDto {
 
-    private String id;
-    private String url;
-    private String timeZone;
-    private String email;
-    private String cronRegExp;
-    private Boolean status;
+    @JsonProperty("job")
+    private JobCanonicalDto jobCanonicalDto;
 
 }

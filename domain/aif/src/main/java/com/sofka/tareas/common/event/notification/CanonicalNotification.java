@@ -11,6 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class CanonicalNotification<T> {
-    private Header header;
     private T data;
 }

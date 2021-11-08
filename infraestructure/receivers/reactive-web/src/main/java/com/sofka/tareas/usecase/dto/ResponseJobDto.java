@@ -1,4 +1,4 @@
-package com.sofka.tareas.command.dto;
+package com.sofka.tareas.usecase.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

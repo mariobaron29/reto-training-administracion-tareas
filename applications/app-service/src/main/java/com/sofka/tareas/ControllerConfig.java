@@ -1,6 +1,6 @@
 package com.sofka.tareas;
 
-import com.sofka.tareas.command.JobController;
+import com.sofka.tareas.usecase.CreateJobUseCase;
 import com.sofka.tareas.common.event.EventsGateway;
 import com.sofka.tareas.configbuilder.ConfigBuilder;
 import com.sofka.tareas.configbuilder.ConfigParameters;
@@ -41,12 +41,12 @@ public class ControllerConfig {
     private String tls;
 
     @Bean
-    public JobController jobController(
+    public CreateJobUseCase jobController(
             EventsGateway eventsGateway,
             JobCanonicalRepository jobRepository,
             EventCanonicalRepository eventRepository
     ) {
-        return new JobController(
+        return new CreateJobUseCase(
                 ConfigBuilder.builder()
                         .eventsGateway(eventsGateway)
                         .jobRepository(jobRepository)

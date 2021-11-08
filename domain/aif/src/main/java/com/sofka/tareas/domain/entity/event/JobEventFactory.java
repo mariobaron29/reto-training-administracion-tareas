@@ -2,6 +2,9 @@ package com.sofka.tareas.domain.entity.event;
 
 import com.sofka.tareas.common.event.JobCreatedEvent;
 import com.sofka.tareas.domain.canonical.event.JobEventCanonical;
+import com.sofka.tareas.domain.entity.job.Job;
+
+import java.util.UUID;
 
 public interface JobEventFactory {
 
@@ -16,6 +19,20 @@ public interface JobEventFactory {
                     .timeZone(canonical.getTimeZone())
                     .url(canonical.getUrl())
                     .status(canonical.getStatus())
+                .build();
+    }
+
+    default JobEvent buildCreateJobEvent(Job job) {
+        return JobEvent.builder()
+                    .eventId(UUID.randomUUID().toString())
+                    .eventName(JobCreatedEvent.EVENT_NAME)
+                    .jobId(job.getId())
+                    .cronRegExp(job.getCronRegExp())
+                    .email(job.getEmail())
+                    .status(job.getStatus())
+                    .timeZone(job.getTimeZone())
+                    .url(job.getUrl())
+                    .status(job.getStatus())
                 .build();
     }
 

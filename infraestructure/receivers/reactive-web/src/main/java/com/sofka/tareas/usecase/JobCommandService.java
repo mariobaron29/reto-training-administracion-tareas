@@ -1,9 +1,9 @@
-package com.sofka.tareas.command;
+package com.sofka.tareas.usecase;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sofka.tareas.command.dto.RequestJobDto;
-import com.sofka.tareas.command.dto.ResponseJobDto;
-import com.sofka.tareas.command.mapper.ParserDataToEntity;
+import com.sofka.tareas.usecase.dto.RequestJobDto;
+import com.sofka.tareas.usecase.dto.ResponseJobDto;
+import com.sofka.tareas.usecase.mapper.ParserDataToEntity;
 import com.sofka.tareas.domain.canonical.event.JobEventCanonical;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

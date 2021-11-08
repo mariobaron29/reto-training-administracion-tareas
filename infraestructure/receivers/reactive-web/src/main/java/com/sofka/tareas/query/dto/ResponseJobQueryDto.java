@@ -19,7 +19,7 @@ import java.util.List;
 public class ResponseJobQueryDto {
 
     @JsonProperty("jobs")
-    private List<JobCanonical> jobCanonical;
+    private List<Job> job;
 
     @JsonProperty("job")
     private Job jobResult;
